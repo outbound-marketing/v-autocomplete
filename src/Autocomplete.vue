@@ -10,9 +10,9 @@
             @keydown.up="keyUp" @keydown.down="keyDown">
     </div>
     <div class="v-autocomplete-list" v-if="show">
-      <div class="v-autocomplete-list-item" v-for="item, i in internalItems" @click.native="onClickItem(item)"
+      <div class="v-autocomplete-list-item" v-for="item, i in internalItems"
            :class="{'v-autocomplete-item-active': i === cursor}" @mouseover="cursor = i">
-        <div :is="componentItem" :item="item" :searchText="searchText"></div>
+        <div :is="componentItem" :item="item" :searchText="searchText" @click="onClickItem(item)"></div>
       </div>
     </div>
   </div>
@@ -81,6 +81,7 @@ export default {
     },
 
     onClickItem(item) {
+      console.log('evento')
       this.onSelectItem(item)
       this.$emit('item-clicked', item)
     },
